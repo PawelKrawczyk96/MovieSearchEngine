@@ -1,7 +1,9 @@
 import React from 'react';
 import Movie from './Movie'
+import prev from './../images/prev.svg'
+import next from './../images/next.svg'
 
-const MoviesList = ({moviesData,turnPage,pages,page}) => {
+const MoviesList = ({moviesData,turnPage,pages,page,orderBy}) => {
 
     const movies = moviesData.map((movie)=>{
         return <Movie data={movie} key={movie.id}/>
@@ -22,14 +24,11 @@ const MoviesList = ({moviesData,turnPage,pages,page}) => {
             turnPage(page+1)
     })
 
-    const test = (() =>{
-        console.log('test')
-    })
     return (
         <div>
             <div className="filters_form">
                 <label>Sotrowanie</label>
-                <select id="order_by" name="order" form="filters" onChange={test}>
+                <select id="order_by" name="order" form="filters" onChange={(e)=> orderBy(e.target.value)}>
                     <option value="title.asc">Nazwa A-Z</option>
                     <option value="title.desc">Nazwa Z-A</option>
                     <option value="vote_average.asc">Ocena rosnąco</option>
@@ -39,8 +38,11 @@ const MoviesList = ({moviesData,turnPage,pages,page}) => {
                 </select>
             </div>
             {movies}
-            <button onClick={prevPage}>{'<<'}</button>
-            <button onClick={nextPage}>{'>>'}</button>
+            <div className="page_controls">
+                <button className="btn_page" onClick={prevPage}><img src={prev} /></button>
+                <p>{page}</p>
+                <button className="btn_page" onClick={nextPage}><img src={next} /></button>
+            </div>
         </div>
 
         

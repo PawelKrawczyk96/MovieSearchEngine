@@ -15,18 +15,21 @@ function App() {
       const {results,total_pages} = await response.json()
       setMovies(results)
       setPages(total_pages)
-      console.log(results)
     }
     fetchMovies()
-  },[page])
+  },[page,order])
 
   const turnPage = (page) => {
     setPage(page)
   }
 
+  const orderBy = ((order) =>{
+    setOrder(order)
+  })
+
   return (
     <div className="App">
-      <MoviesList moviesData={movies} pages={pages} turnPage={turnPage} page={page}/>
+      <MoviesList moviesData={movies} pages={pages} turnPage={turnPage} page={page} orderBy={orderBy}/>
     </div>
   );
 }
