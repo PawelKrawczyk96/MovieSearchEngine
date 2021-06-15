@@ -21,11 +21,22 @@ const MoviesList = ({moviesData,turnPage,pages,page}) => {
         else
             turnPage(page+1)
     })
+
+    const test = (() =>{
+        console.log('test')
+    })
     return (
         <div>
-            <div className="movies_header">
-                <h1>Tytul</h1>
-                <h1>Opis</h1>
+            <div className="filters_form">
+                <label>Sotrowanie</label>
+                <select id="order_by" name="order" form="filters" onChange={test}>
+                    <option value="title.asc">Nazwa A-Z</option>
+                    <option value="title.desc">Nazwa Z-A</option>
+                    <option value="vote_average.asc">Ocena rosnąco</option>
+                    <option value="vote_average.desc">Ocena malejąco</option>
+                    <option value="release_date.asc">Data wydania od najstarszego</option>
+                    <option value="release_date.desc">Data wydania od najmłodszego</option>
+                </select>
             </div>
             {movies}
             <button onClick={prevPage}>{'<<'}</button>
