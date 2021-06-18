@@ -2,8 +2,9 @@ import React from 'react';
 import Movie from './Movie'
 import prev from './../images/prev.svg'
 import next from './../images/next.svg'
+import PropTypes from 'prop-types'
 
-const MoviesList = ({moviesData,turnPage,pages,page,orderBy}) => {
+const MoviesList = ({moviesData,turnPage,pages,page,orderBy,movieList}) => {
 
     const movies = moviesData.map((movie)=>{
         return <Movie data={movie} key={movie.id}/>
@@ -36,6 +37,12 @@ const MoviesList = ({moviesData,turnPage,pages,page,orderBy}) => {
                     <option value="release_date.asc">Data wydania od najstarszego</option>
                     <option value="release_date.desc">Data wydania od najmłodszego</option>
                 </select>
+                <label>Wybór listy filmów</label>
+                <select id="movies_list" name="movies_list" form="filters" onChange={(e)=> movieList(e.target.value)}>
+                    <option value="1">Filmy Marvela</option>
+                    <option value="3">DC Comics universe</option>
+                    <option value="5">Filmy o postaciach z Marvela</option>
+                </select>
             </div>
             {movies}
             <div className="page_controls">
@@ -47,6 +54,15 @@ const MoviesList = ({moviesData,turnPage,pages,page,orderBy}) => {
 
         
     )
+}
+
+MoviesList.propTypes = {
+    moviesData: PropTypes.array.isRequired,
+    turnPage: PropTypes.func.isRequired,
+    pages: PropTypes.number.isRequired,
+    page: PropTypes.number.isRequired,
+    orderBy: PropTypes.func.isRequired,
+    movieList: PropTypes.func.isRequired
 }
 
 export default MoviesList

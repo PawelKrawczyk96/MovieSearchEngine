@@ -41,7 +41,7 @@ ul li button{
 
 .filters_form label{
   font-size: 1.3rem;
-  padding: 0 8px 0 0;
+  padding: 0 8px;
 }
 
 #order_by, option{
